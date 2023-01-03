@@ -7,6 +7,9 @@ from wtforms import FileField, SubmitField, Form, BooleanField, StringField, Pas
 from werkzeug.utils import secure_filename
 import os
 from wtforms.validators import InputRequired, DataRequired
+import flask # Import the module
+
+print(flask.__version__)
 
 
 app = Flask(__name__)
@@ -286,4 +289,4 @@ def addbook():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0')
