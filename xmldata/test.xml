@@ -1,0 +1,63 @@
+<?xml version="1.0" ?><books>
+	<book ISBN="9780316441117" price="32.55" cover="/static/img/9780316441117.png">
+		<title>The Revolutionary</title>
+		<author>Stacy Schiff</author>
+		<publisher>Little Brown and Company</publisher>
+		<date>25/10/2022</date>
+		<types>
+		  <type>Biography</type>
+    </types>
+		<description>ONE OF WALL STREET JOURNAL'S 10 BEST BOOKS OF THE YEAR</description>
+	</book>
+	<book ISBN="9780593534663" price="26.04" cover="/static/img/9780593534663.png">
+		<title>The Rabbit Hutch</title>
+		<author>Tess Gunty</author>
+		<publisher>Knopf Publishing Group</publisher>
+		<date>21/7/2022</date>
+		<types>
+		  <type>Literary fiction</type>
+		  <type>Coming of age</type>
+    </types>
+		<description>NATIONAL BOOK AWARD WINNER</description>
+	</book>
+	<book ISBN="9780593237465" price="30.23" cover="/static/img/9780593237465.png">
+		<title>The Light We Carry</title>
+		<author>Michelle Obama</author>
+		<publisher>Crown Publishing Group (NY)</publisher>
+		<date>15/11/2022</date>
+		<types>
+		  <type>Biography</type>
+		  <type>Autobiography</type>
+    </types>
+		<description>#1 NEW YORK TIMES AND USA TODAY BESTSELLER</description>
+	</book>
+	<book ISBN="9780063021426" price="26.03" cover="/static/img/9780063021426.png">
+		<title>Babel</title>
+		<author>R. F. Kuang</author>
+		<publisher>Harper Voyager</publisher>
+		<date>23/8/2022</date>
+		<types>
+		  <type>Fantasy fiction</type>
+		  <type>Historical fiction</type>
+      <type>Historical fantasy</type>
+		  <type>Dark fantasy</type>
+		  <type>Alternate history</type>
+    </types>
+		<description>Instant #1 New York Times Bestseller from the author of The Poppy War</description>
+	</book>
+	<book ISBN="9783127323207" price="27.90" cover="/static/img/9783127323207.png">
+		<title>An Immense World</title>
+		<author>Ed Yong</author>
+		<publisher>Random House</publisher>
+		<date>21/6/2022</date>
+		<types>
+		  <type>Nonfiction</type>
+		  <type>Science</type>
+		  <type>Nature</type>
+		  <type>Animals</type>
+		  <type>Biology</type>
+		  <type>Environment</type>
+    </types>
+		<description>NEW YORK TIMES BESTSELLER</description>
+	</book>
+<book ISBN="gdfsg" price="gfdsg" cover="/static/img/gdfsg"><title>asgf</title><author>gfadg</author><publisher>gfdag</publisher><date>2023-01-12</date><types><type>sfd</type></types><description>dfsg</description></book></books>

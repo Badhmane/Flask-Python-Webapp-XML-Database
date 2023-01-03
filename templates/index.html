@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home Page</title>
+{% endblock %}
+
+{% block body %}
+
+<!--Main-->
+
+<div class="main">
+
+  <div class="main_tag">
+    <h1>WELCOME TO<br><span>BOOK STORE</span></h1>
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestias atque laborum
+      non fuga ex deserunt. Exercitationem velit ducimus praesentium, obcaecati hic voluptate id
+      tenetur fuga illum quidem omnis? Rerum?
+    </p>
+    <a href="#" class="main_btn">Learn More</a>
+
+  </div>
+
+  <div class="main_img">
+    <img src="{{ url_for('static', filename='img/table.png') }}">
+  </div>
+
+</div>
+
+<!--Arrivals-->
+
+<div class="arrivals">
+  <h1>Buy a Book</h1>
+  <hr />
+
+  <div class="arrivals_box">
+
+    {% for obj in bookObjectCollection %}
+    <div class="arrivals_card">
+      <div class="arrivals_image">
+        <a href="/{{ obj.ISBN }}">
+          <img src="{{ obj.cover }}.png">
+          <p class="text">Learn More</p>
+        </a>
+      </div>
+      <div class="arrivals_tag">
+        <p class="title">{{ obj.title }}</p>
+        <p class="author">by {{ obj.author }}</p>
+        <p class="type">{% for type in obj.types %}{{ type }}{% if obj.types.index(type) != obj.types|length - 1 %}{%
+          block content %}<span>, </span>{% endblock content %}{% endif %}{% endfor %}</p>
+        <div class="arrivals_icon">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star-half-stroke"></i>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <hr class="bottom-hr" />
+</div>
+{% endblock %}

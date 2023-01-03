@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding= "UTF-8"?>
+<!DOCTYPE users [
+<!ELEMENT users (user)+>
+<!ELEMENT user (fname, lname, email, phone, password, address*, cardinfo*)>
+<!ELEMENT fname (#PCDATA)>
+<!ELEMENT lname (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+<!ELEMENT address (house, country, state, zip)>
+<!ELEMENT house (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT zip (#PCDATA)>
+<!ELEMENT cardinfo (name, number, exp, cvv)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT number (#PCDATA)>
+<!ELEMENT exp (#PCDATA)>
+<!ELEMENT cvv (#PCDATA)>
+<!ATTLIST user id CDATA #REQUIRED>
+]>
+<users>
+	<user id="0">
+		<fname>Admin</fname>
+		<lname>Admin</lname>
+		<email>admin@gmail.com</email>
+		<phone>0512345678</phone>
+		<password>qwertyuiop</password>
+	</user>
+	<user id="1">
+		<fname>User</fname>
+		<lname>User</lname>
+		<email>user@gmail.com</email>
+		<phone>0712345678</phone>
+		<password>qwertyuiop</password>
+		<address>
+		  <house>23 user</house>
+		  <country>algeria</country>
+		  <state>oran</state>
+		  <zip>31245</zip>
+		</address>
+		<address>
+		  <house>2223 user</house>
+		  <country>222algeria</country>
+		  <state>22oran</state>
+		  <zip>2231245</zip>
+		</address>
+		<cardinfo>
+		  <name>USER USER</name>
+		  <number>0893127649507543</number>
+		  <exp>05/23</exp>
+		  <cvv>245</cvv>
+		</cardinfo>
+	</user>
+</users>

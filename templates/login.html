@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+    .bb {
+        width: 100%;
+    }
+    form {
+        height: 100vh;
+    }
+
+    .containerr{
+        width: 350px;
+        margin: auto;
+    }
+    .signtitle {
+        padding-top: 170px;
+        font-size: 50px;
+    }
+
+    .signtext {
+        padding-top: 10px;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<form class="containerr" method="post">
+    <h1 class="mb-3 signtitle">login</h1>
+    <h1 class="mb-3 signtext">Please login To continue</h1>
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+        <input type="email" id="form2Example1" name="email" class="form-control" />
+        <label class="form-label" for="form2Example1">Email address</label>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+        <input type="password" id="form2Example2" name="password" class="form-control" />
+        <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <!-- Submit button -->
+    <input class="bb btn btn-primary btn-block mb-4" type="submit" value="Sign in" />
+
+    <div class="text-center">
+        <p>Not a member? <a href="/signup">Register</a></p>
+    </div>
+</form>
+{% endblock %}

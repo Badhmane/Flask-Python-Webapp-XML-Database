@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding= "UTF-8"?>
+<!DOCTYPE books [
+<!ELEMENT books (book)+>
+<!ELEMENT book (title, author, publisher, type, description)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ATTLIST book ISBN CDATA #REQUIRED>
+<!ATTLIST book amount CDATA #REQUIRED>
+<!ATTLIST book price CDATA #REQUIRED>
+<!ATTLIST book cover CDATA #REQUIRED>
+]>
+<books>
+	<book ISBN="9780316441117" amount="10" price="32.55" cover="/static/img/9780316441117.png">
+		<title>The Revolutionary</title>
+		<author>Stacy Schiff</author>
+		<publisher>Little Brown and Company</publisher>
+		<type>Hardcover</type>
+		<description>ONE OF WALL STREET JOURNAL'S 10 BEST BOOKS OF THE YEAR</description>
+	</book>
+	<book ISBN="9780593534663" amount="10" price="26.04" cover="/static/img/9780593534663.png">
+		<title>The Rabbit Hutch</title>
+		<author>Tess Gunty</author>
+		<publisher>Knopf Publishing Group</publisher>
+		<type>Hardcover</type>
+		<description>NATIONAL BOOK AWARD WINNER</description>
+	</book>
+	<book ISBN="9780593237465" amount="10" price="30.23" cover="/static/img/9780593237465.png">
+		<title>The Light We Carry</title>
+		<author>Michelle Obama</author>
+		<publisher>Crown Publishing Group (NY)</publisher>
+		<type>Hardcover</type>
+		<description>#1 NEW YORK TIMES AND USA TODAY BESTSELLER</description>
+	</book>
+	<book ISBN="9780063021426" amount="10" price="26.03" cover="/static/img/9780063021426.png">
+		<title>Babel</title>
+		<author>R. F. Kuang</author>
+		<publisher>Harper Voyager</publisher>
+		<type>Hardcover</type>
+		<description>Instant #1 New York Times Bestseller from the author of The Poppy War</description>
+	</book>
+	<book ISBN="9783127323207" amount="10" price="27.90" cover="/static/img/9783127323207.png">
+		<title>An Immense World</title>
+		<author>Ed Yong</author>
+		<publisher>Random House</publisher>
+		<type>Hardcover</type>
+		<description>NEW YORK TIMES BESTSELLER</description>
+	</book>
+</books>

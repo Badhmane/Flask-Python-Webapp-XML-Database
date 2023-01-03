@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Product Page</title>
+{% endblock %}
+
+{% block body %}
+<div class="popup">
+  <div class="popup-content">
+    <div class="top">
+      <button id="close" class="close_btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="bottom">
+      <p class="logtext">Login</p>
+      <form method="post">
+        <div class="col-12 ccc">
+          <label for="email" class="form-label">Email</span></label>
+          <input type="email" class="form-control" id="email">
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="password" class="form-label">Password</span></label>
+          <input type="password" class="form-control" id="password">
+          <div class="invalid-feedback">
+            Please enter a valid password for shipping updates.
+          </div>
+        </div>
+        <input class="form__submit" type="submit" value="Login" />
+      </form>
+    </div>
+  </div>
+</div>
+<!--product-->
+<div class="product">
+  <div class="product_box">
+    <div class="product_image">
+      <img src="{{ book.cover }}.png">
+    </div>
+    <div class="product_tag">
+      <p class="title">{{ book.title }}</p>
+      <p class="author">by {{ book.author }}</p>
+      <div class="product_icon">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star-half-stroke"></i>
+      </div>
+      <hr>
+      <div class="pricing">
+        <p class="price">${{ book.price }}</p>
+        {% if g.user == None %}
+        <a href="/login" class="product_btn">Buy Now</a>
+        {% else %}
+        <button id="buy" class="product_btn">Buy Now</a>
+        {% endif %}
+      </div>
+      <hr>
+      <p class="type"><span>Genre : </span>{% for type in book.types %}{{ type }}{% if book.types.index(type) != book.types|length - 1
+        %}{% block content %}<span>, </span>{% endblock content %}{% endif %}{% endfor %}</p>
+      <p class="description"><span>Description : </span>{{ book.description }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
