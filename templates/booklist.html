@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        .bb {
+            width: 85%;
+            margin: auto;
+            margin-top: 200px;
+        }
+        .tableimg {
+            width: 40px
+        }
+        .btbt {
+            display: inline-block;
+            font-size: 12px;
+            margin: 0;
+            padding: 2px 5px;
+
+        }
+        .hjhhhh {
+            display: none;
+        }
+        .z3fran {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 0 7px;
+            
+        }
+    </style>
+</head>
+<body>
+    <table id="example" class="table table-hover bb">
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Price</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td><img class="tableimg" src="{{ book.cover }}.png"></td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.ISBN }}</td>
+                <td>${{ book.price }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.publisher }}</td>
+                <td>{{ book.date }}</td>
+                <td>{% for type in book.types %}{{ type }}{% if book.types.index(type) != book.types|length - 1 %}{% block content %}<span>, </span>{% endblock content %}{% endif %}{% endfor %}</td>
+                <td>{{ book.description }}</td>
+                <td>
+                    <form method="post" class="z3fran">
+                        <input type="text" name="ISBN" class="form-control hjhhhh" value="{{ book.ISBN }}" />
+                        <a href="/{{ book.ISBN }}/editbook" class="btn btn-primary btbt">Edit</a>
+                        <input class="btn btn-primary btbt" name="btn" type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

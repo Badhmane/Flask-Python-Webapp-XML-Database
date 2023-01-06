@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Add Book Page</title>
+<style>
+    .containerr {
+        width: 600px;
+        margin: auto;
+        white-space: normal;
+    }
+
+    .form-all {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .subb {
+        width: 100%;
+        height: 50px;
+    }
+
+    .bb {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .signtitle {
+        padding-top: 100px;
+        font-size: 50px;
+    }
+
+    .signtext {
+        padding-top: 10px;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+    }
+
+    .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+    }
+
+    .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="col-md-7 col-lg-8 form-all containerr">
+    <h1 class="mb-3 signtitle">Edit a Book</h1>
+    <form method='POST' enctype='multipart/form-data'>
+        <div class="row g-3">
+            <div class="col-sm-16">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="title" placeholder="" value="{{ book.title }}" required>
+                <div class="invalid-feedback">
+                    Valid title is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" name="author" class="form-control" id="author" placeholder="" value="{{ book.author }}" required>
+                <div class="invalid-feedback">
+                    Valid author name is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="publisher" class="form-label">Publisher</label>
+                <input type="text" name="publisher" class="form-control" id="publisher" placeholder="" value="{{ book.publisher }}"
+                    required>
+                <div class="invalid-feedback">
+                    Valid Publisher name is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" name="date" class="form-control" id="date" placeholder="" value="{{ book.date }}" required>
+                <div class="invalid-feedback">
+                    Valid Publisher name is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="typey" class="form-label">Type</label>
+                <input type="text" name="typey" class="form-control" id="typey" placeholder="" value="{% for type in book.types %}{{ type }}{% if book.types.index(type) != book.types|length - 1 %}{% block content %},{% endblock content %}{% endif %}{% endfor %}" required>
+                <div class="invalid-feedback">
+                    Valid type name is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="ISBN" class="form-label">ISBN</label>
+                <input type="text" name="isbn" class="form-control" id="isbn" placeholder="" value="{{ book.ISBN }}" required>
+                <div class="invalid-feedback">
+                    Valid ISBN name is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" name="price" class="form-control" id="price" placeholder="" value="{{ book.price }}" required>
+                <div class="invalid-feedback">
+                    Valid price name is required.
+                </div>
+            </div>
+            <div class="col-sm-16">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="description" class="form-control ddd" id="description" rows="3">{{ book.description }}</textarea>
+                <div class="invalid-feedback">
+                    Valid description is required.
+                </div>
+            </div>
+            <div class="col-sm-16">
+                <label for="formFile" class="form-label">Default file input example</label>
+                {{form.hidden_tag()}}
+                {{form.file(class_='form-control')}}
+                {{form.submit(class_='bb btn btn-primary btn-block mb-4 col-sm-16')}}
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
