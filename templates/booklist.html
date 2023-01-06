@@ -14,7 +14,7 @@
         .bb {
             width: 85%;
             margin: auto;
-            margin-top: 200px;
+            margin-top: 30px;
         }
         .tableimg {
             width: 40px
@@ -35,9 +35,51 @@
             grid-gap: 0 7px;
             
         }
+        .can {
+            width: 85%;
+            margin: auto;
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .heheheh {
+            width: 200px;
+            align-items: left;
+        }
+        .gogo {
+            border-radius: 0px 5px 5px 0px;
+        }
+        .gaga {
+            border-radius: 5px 0px 0px 5px;
+            margin-left: 10px;
+        }
+        .fefe {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+        }
     </style>
 </head>
 <body>
+    <div class="row g-3 can">
+        <a href="/addbook" class="btn btn-primary heheheh">Add a Book</a>
+        <div class="input-group rounded">
+            <form method="post" class="fefe">
+                <select class="form-select" name="selcto" aria-label="Default select example">
+                    <option value="1" selected>Selct a colum</option>
+                    <option value="2">Title</option>
+                    <option value="3">ISBN</option>
+                    <option value="4">Price</option>
+                    <option value="5">Author</option>
+                    <option value="6">Publisher</option>
+                    <option value="7">Date</option>
+                    <option value="8">Type</option>
+                    <option value="9">Description</option>
+                  </select>
+                <input type="search" name="search" class="gaga form-control rounded-left" placeholder="Write here..." aria-label="Search" aria-describedby="search-addon" />
+                <input class="btn btn-primary gogo" name="btn" type="submit" value="Search" />
+            </form>
+        </div>
+    </div>
     <table id="example" class="table table-hover bb">
         <thead>
             <tr>

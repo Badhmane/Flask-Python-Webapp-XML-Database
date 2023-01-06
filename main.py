@@ -110,6 +110,7 @@ class User:
 
 books = booksdoc.getElementsByTagName('book')
 bookObjectCollection = []
+bookObjectCollectionSearch = []
 alltypes = []
 for book in books:
     types = book.getElementsByTagName('type')
@@ -221,8 +222,8 @@ def booklist():
                                     book.getElementsByTagName('description')[0].firstChild.data, book.attributes['ISBN'].value, book.attributes['price'].value, book.attributes['cover'].value))
     
     if request.method == "POST":
-        ISBN = request.form['ISBN']
         if request.form['btn'] == 'Delete':
+            ISBN = request.form['ISBN']
             books = booksdoc2.getroot()
 
             for book in books:
@@ -236,6 +237,56 @@ def booklist():
                 bookxml.writexml(xml_file)
             
             return redirect(url_for('booklist'))
+        else:
+            if request.form['btn'] == 'Search':
+                search = request.form['search']
+                selcto = request.form['selcto']
+                bookObjectCollectionSearch.clear()
+                if selcto == '1': 
+                    return redirect(url_for('booklist'))
+                elif selcto == "2": 
+                    print('ffefefefe')
+                    for book in bookObjectCollection:
+                        if search in book.title:
+                            print(book.title)
+                            bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
+                elif selcto == "3": 
+                    for book in bookObjectCollection:
+                        if search in book.ISBN:
+                            bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
+                elif selcto == "4": 
+                    for book in bookObjectCollection:
+                        if search in book.price:
+                            bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
+                elif selcto == "5": 
+                    for book in bookObjectCollection:
+                        if search in book.author:
+                            bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
+                elif selcto == "6": 
+                    for book in bookObjectCollection:
+                        if search in book.publisher:
+                            bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
+                elif selcto == "7": 
+                    for book in bookObjectCollection:
+                        if search in book.date:
+                            bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
+                elif selcto == "8": 
+                    for book in bookObjectCollection:
+                        for type in book.types:
+                            if search in type:
+                                bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
+                else: 
+                    for book in bookObjectCollection:
+                        if search in book.description:
+                            bookObjectCollectionSearch.append(book)
+                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
         
     return render_template('booklist.html' , books=bookObjectCollection)
 
@@ -343,7 +394,8 @@ def editbook(isbn):
         if form.validate_on_submit():
             file = form.file.data # First grab the file
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(request.form['isbn']  + ".png"))) # Then save the file
-    
+        return redirect(url_for('booklist'))
+
     for book in bookObjectCollection:
         if (isbn == book.ISBN):
             return render_template('editbook.html', book=book, form=form)
@@ -411,6 +463,8 @@ def addbook():
         if form.validate_on_submit():
             file = form.file.data # First grab the file
             file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(request.form['isbn']  + ".png"))) # Then save the file
+        return redirect(url_for('booklist'))
+
     return render_template('addbook.html', form=form)
 
 ########### end views ###########
