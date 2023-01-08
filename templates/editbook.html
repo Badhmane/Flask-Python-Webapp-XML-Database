@@ -95,57 +95,65 @@
         <div class="row g-3">
             <div class="col-sm-16">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="" value="{{ book.title }}" required>
+                <input type="text" name="title" class="form-control" id="title" placeholder="" value="{{ book.title }}"
+                    required>
                 <div class="invalid-feedback">
                     Valid title is required.
                 </div>
             </div>
             <div class="col-sm-6">
                 <label for="author" class="form-label">Author</label>
-                <input type="text" name="author" class="form-control" id="author" placeholder="" value="{{ book.author }}" required>
+                <input type="text" name="author" class="form-control" id="author" placeholder=""
+                    value="{{ book.author }}" required>
                 <div class="invalid-feedback">
                     Valid author name is required.
                 </div>
             </div>
             <div class="col-sm-6">
                 <label for="publisher" class="form-label">Publisher</label>
-                <input type="text" name="publisher" class="form-control" id="publisher" placeholder="" value="{{ book.publisher }}"
-                    required>
+                <input type="text" name="publisher" class="form-control" id="publisher" placeholder=""
+                    value="{{ book.publisher }}" required>
                 <div class="invalid-feedback">
                     Valid Publisher name is required.
                 </div>
             </div>
             <div class="col-sm-6">
                 <label for="date" class="form-label">Date</label>
-                <input type="date" name="date" class="form-control" id="date" placeholder="" value="{{ book.date }}" required>
+                <input type="date" name="date" class="form-control" id="date" placeholder="" value="{{ book.date }}"
+                    required>
                 <div class="invalid-feedback">
                     Valid Publisher name is required.
                 </div>
             </div>
             <div class="col-sm-6">
                 <label for="typey" class="form-label">Type</label>
-                <input type="text" name="typey" class="form-control" id="typey" placeholder="" value="{% for type in book.types %}{{ type }}{% if book.types.index(type) != book.types|length - 1 %}{% block content %},{% endblock content %}{% endif %}{% endfor %}" required>
+                <input type="text" name="typey" class="form-control" id="typey" placeholder=""
+                    value="{% for type in book.types %}{{ type }}{% if book.types.index(type) != book.types|length - 1 %}{% block content %},{% endblock content %}{% endif %}{% endfor %}"
+                    required>
                 <div class="invalid-feedback">
                     Valid type name is required.
                 </div>
             </div>
             <div class="col-sm-6">
                 <label for="ISBN" class="form-label">ISBN</label>
-                <input type="text" name="isbn" class="form-control" id="isbn" placeholder="" value="{{ book.ISBN }}" required>
+                <input type="text" name="isbn" class="form-control" id="isbn" placeholder="" value="{{ book.ISBN }}"
+                    required>
                 <div class="invalid-feedback">
                     Valid ISBN name is required.
                 </div>
             </div>
             <div class="col-sm-6">
                 <label for="price" class="form-label">Price</label>
-                <input type="text" name="price" class="form-control" id="price" placeholder="" value="{{ book.price }}" required>
+                <input type="text" name="price" class="form-control" id="price" placeholder="" value="{{ book.price }}"
+                    required>
                 <div class="invalid-feedback">
                     Valid price name is required.
                 </div>
             </div>
             <div class="col-sm-16">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="description" class="form-control ddd" id="description" rows="3">{{ book.description }}</textarea>
+                <textarea name="description" class="form-control ddd" id="description"
+                    rows="3">{{ book.description }}</textarea>
                 <div class="invalid-feedback">
                     Valid description is required.
                 </div>

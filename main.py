@@ -7,7 +7,7 @@ from wtforms import FileField, SubmitField, Form, BooleanField, StringField, Pas
 from werkzeug.utils import secure_filename
 import os
 from wtforms.validators import InputRequired, DataRequired
-import flask # Import the module
+import flask  # Import the module
 from datetime import datetime
 
 print(flask.__version__)
@@ -16,6 +16,7 @@ print(flask.__version__)
 app = Flask(__name__)
 app.secret_key = 'sssseeeeccccrrrreeettttttt'
 app.config['UPLOAD_FOLDER'] = 'static/img'
+
 
 @app.before_request
 def befor_request():
@@ -26,6 +27,7 @@ def befor_request():
                 g.user = user
 
 ########### start xml parser ###########
+
 
 booksdoc = minidom.parse('xmldata/books.xml')
 booksdoc2 = etree.parse('xmldata/books.xml')
@@ -158,7 +160,7 @@ for user in users:
                                   cvvws[0].childNodes[0].nodeValue)
     except:
         cardinfoObject = Cardinfo("", "", "", "")
-    
+
     userObjectCollection.append(User(user.attributes['id'].value, user.getElementsByTagName('fname')[0].firstChild.data, user.getElementsByTagName('lname')[0].firstChild.data, user.getElementsByTagName('email')[0].firstChild.data, user.getElementsByTagName('phone')[0].firstChild.data, user.getElementsByTagName('password')[0].firstChild.data,
                                      addressObjectCollection, cardinfoObject))
 
@@ -204,7 +206,6 @@ def signup():
 # Booklist
 
 
-
 @ app.route('/booklist', methods=['POST', 'GET'])
 def booklist():
 
@@ -220,75 +221,72 @@ def booklist():
             i = i+1
         bookObjectCollection.append(Book(book.getElementsByTagName('title')[0].firstChild.data, book.getElementsByTagName('author')[0].firstChild.data, book.getElementsByTagName('publisher')[0].firstChild.data, book.getElementsByTagName('date')[0].firstChild.data, alltypes,
                                     book.getElementsByTagName('description')[0].firstChild.data, book.attributes['ISBN'].value, book.attributes['price'].value, book.attributes['cover'].value))
-    
+
     if request.method == "POST":
         if request.form['btn'] == 'Delete':
             ISBN = request.form['ISBN']
             books = booksdoc2.getroot()
-
             for book in books:
                 if book.attrib['ISBN'] == ISBN:
                     book.getparent().remove(book)
-
-            bookstr = minidom.parseString(etree.tostring(books, pretty_print=True, encoding='unicode')).toprettyxml()
+            bookstr = minidom.parseString(etree.tostring(
+                books, pretty_print=True, encoding='unicode')).toprettyxml()
             bookxml = minidom.parseString(bookstr)
-        
             with open("xmldata/books.xml", "w", encoding="utf-8") as xml_file:
                 bookxml.writexml(xml_file)
-            
             return redirect(url_for('booklist'))
         else:
             if request.form['btn'] == 'Search':
                 search = request.form['search']
                 selcto = request.form['selcto']
                 bookObjectCollectionSearch.clear()
-                if selcto == '1': 
+                if selcto == '1':
                     return redirect(url_for('booklist'))
-                elif selcto == "2": 
+                elif selcto == "2":
                     print('ffefefefe')
                     for book in bookObjectCollection:
                         if search in book.title:
                             print(book.title)
                             bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-                elif selcto == "3": 
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+                elif selcto == "3":
                     for book in bookObjectCollection:
                         if search in book.ISBN:
                             bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-                elif selcto == "4": 
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+                elif selcto == "4":
                     for book in bookObjectCollection:
                         if search in book.price:
                             bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-                elif selcto == "5": 
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+                elif selcto == "5":
                     for book in bookObjectCollection:
                         if search in book.author:
                             bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-                elif selcto == "6": 
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+                elif selcto == "6":
                     for book in bookObjectCollection:
                         if search in book.publisher:
                             bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-                elif selcto == "7": 
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+                elif selcto == "7":
                     for book in bookObjectCollection:
                         if search in book.date:
                             bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-                elif selcto == "8": 
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+                elif selcto == "8":
                     for book in bookObjectCollection:
                         for type in book.types:
                             if search in type:
                                 bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-                else: 
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+                else:
                     for book in bookObjectCollection:
                         if search in book.description:
                             bookObjectCollectionSearch.append(book)
-                    return render_template('booklist.html' , books=bookObjectCollectionSearch)
-        
-    return render_template('booklist.html' , books=bookObjectCollection)
+                    return render_template('booklist.html', books=bookObjectCollectionSearch)
+
+    return render_template('booklist.html', books=bookObjectCollection)
 
 
 # login
@@ -310,7 +308,6 @@ def login():
 # Product
 
 
-
 @app.route('/<isbn>', methods=['POST', 'GET'])
 def show_product(isbn):
     for book in bookObjectCollection:
@@ -330,7 +327,7 @@ def logout():
 # Editbook
 
 
-@ app.route('/<isbn>/editbook', methods=['GET',"POST"])
+@ app.route('/<isbn>/editbook', methods=['GET', "POST"])
 def editbook(isbn):
     form = UploadFileForm()
     if request.method == "POST":
@@ -370,7 +367,7 @@ def editbook(isbn):
         Type.text = textt
         Types.append(Type)
         textt = ''
-        Description.text = description 
+        Description.text = description
         Types.append(Type)
         Bookk.append(Title)
         Bookk.append(Author)
@@ -383,19 +380,17 @@ def editbook(isbn):
         for book in root:
             if book.attrib['ISBN'] == isbn:
                 book.getparent().remove(book)
-        
         root.append(Bookk)
-        bookstr = minidom.parseString(etree.tostring(root, pretty_print=True, encoding='unicode')).toprettyxml()
+        bookstr = minidom.parseString(etree.tostring(
+            root, pretty_print=True, encoding='unicode')).toprettyxml()
         bookxml = minidom.parseString(bookstr)
-        
         with open("xmldata/books.xml", "w", encoding="utf-8") as xml_file:
             bookxml.writexml(xml_file)
-        
         if form.validate_on_submit():
-            file = form.file.data # First grab the file
-            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(request.form['isbn']  + ".png"))) # Then save the file
+            file = form.file.data  # First grab the file
+            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], secure_filename(
+                request.form['isbn'] + ".png")))  # Then save the file
         return redirect(url_for('booklist'))
-
     for book in bookObjectCollection:
         if (isbn == book.ISBN):
             return render_template('editbook.html', book=book, form=form)
@@ -405,7 +400,7 @@ def editbook(isbn):
 # Addbook
 
 
-@app.route('/addbook', methods=['GET',"POST"])
+@app.route('/addbook', methods=['GET', "POST"])
 def addbook():
     form = UploadFileForm()
     if request.method == "POST":
@@ -445,7 +440,7 @@ def addbook():
         Type.text = textt
         Types.append(Type)
         textt = ''
-        Description.text = description 
+        Description.text = description
         Bookk.append(Title)
         Bookk.append(Author)
         Bookk.append(Publisher)
@@ -454,15 +449,15 @@ def addbook():
         Bookk.append(Description)
         root = booksdoc2.getroot()
         root.append(Bookk)
-        bookstr = minidom.parseString(etree.tostring(root, pretty_print=True, encoding='unicode')).toprettyxml()
+        bookstr = minidom.parseString(etree.tostring(
+            root, pretty_print=True, encoding='unicode')).toprettyxml()
         bookxml = minidom.parseString(bookstr)
-        
         with open("xmldata/books.xml", "w", encoding="utf-8") as xml_file:
             bookxml.writexml(xml_file)
-        
         if form.validate_on_submit():
-            file = form.file.data # First grab the file
-            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(request.form['isbn']  + ".png"))) # Then save the file
+            file = form.file.data  # First grab the file
+            file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)), app.config['UPLOAD_FOLDER'], secure_filename(
+                request.form['isbn'] + ".png")))  # Then save the file
         return redirect(url_for('booklist'))
 
     return render_template('addbook.html', form=form)
